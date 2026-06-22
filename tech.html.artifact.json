@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "kind": "html",
+  "title": "Response",
+  "entry": "response.html",
+  "renderer": "html",
+  "status": "complete",
+  "exports": [
+    "html",
+    "pdf",
+    "zip"
+  ],
+  "primary": true,
+  "createdAt": "2026-06-22T07:36:42.740Z",
+  "updatedAt": "2026-06-22T07:36:42.763Z",
+  "designSystemId": "agentic",
+  "metadata": {
+    "identifier": "response",
+    "artifactType": "text/html",
+    "inferred": false
+  }
+}

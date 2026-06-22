@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>技術スタック | 創栄テクノロジー株式会社</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #0A2540; --navy-light: #1A3A5C; --navy-muted: #E8EDF2;
+      --blue: #0066FF; --blue-hover: #0052CC; --blue-light: #E8F0FE;
+      --bg: #FFFFFF; --bg-alt: #F8F9FA; --surface: #FFFFFF;
+      --fg: #111827; --fg-strong: #0A0A1A; --muted: #4A5568;
+      --border: #E5E7EB; --border-strong: #D1D5DB;
+      --font-display: 'Inter','Yu Gothic','游ゴシック','Noto Sans JP',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+      --font-body: 'Inter','Yu Gothic','游ゴシック','Noto Sans JP',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+      --font-mono: 'JetBrains Mono','IBM Plex Mono',ui-monospace,Menlo,monospace;
+      --max-w: 1200px; --nav-h: 76px;
+      --radius-sm: 8px; --radius-md: 12px; --radius-lg: 16px;
+      --space-sm: 12px; --space-md: 20px; --space-lg: 28px;
+      --space-xl: 40px; --space-2xl: 56px; --space-3xl: 80px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); background: var(--bg); color: var(--fg); line-height: 1.7; font-weight: 400; font-size: 15px; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    ::selection { background: var(--blue-light); color: var(--fg-strong); }
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 28px; }
+    .section { padding: var(--space-3xl) 0; }
+    .section-alt { background: var(--bg-alt); }
+    .section-header { margin-bottom: var(--space-lg); }
+    .section-header .ja { font-family: var(--font-display); font-size: clamp(28px, 3.4vw, 40px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; color: var(--fg-strong); }
+    .section-header .en { font-family: var(--font-mono); font-size: 11px; font-weight: 600; letter-spacing: 0.18em; color: var(--blue); text-transform: uppercase; margin-top: 4px; }
+
+    .nav { position: fixed; top: 0; left: 0; right: 0; height: var(--nav-h); background: rgba(255,255,255,.94); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); z-index: 100; display: flex; align-items: center; }
+    .nav .container { display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 0 28px; }
+    .nav-logo { display: flex; align-items: center; gap: 14px; }
+    .nav-logo svg { width: 38px; height: 38px; flex-shrink: 0; }
+    .nav-logo-text { display: flex; flex-direction: column; }
+    .nav-logo-name { font-family: var(--font-display); font-weight: 700; font-size: 22px; letter-spacing: 0.02em; color: var(--fg-strong); line-height: 1.2; }
+    .nav-logo-sub { font-size: 10px; color: var(--muted); letter-spacing: 0.08em; line-height: 1.2; }
+    .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+    .nav-links a { font-size: 14px; font-weight: 700; color: var(--muted); transition: color 0.2s; letter-spacing: 0.02em; padding: 4px 0; position: relative; cursor: pointer; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 2px; background: var(--navy); transform: scaleX(0); transition: transform 0.2s ease; }
+    .nav-links a:hover { color: var(--fg); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-cta { background: transparent !important; color: var(--muted) !important; padding: 4px 0 !important; border-radius: 0 !important; font-weight: 700 !important; font-size: 14px !important; }
+    .nav-cta::after { display: block !important; }
+    .nav-cta:hover { color: var(--fg) !important; }
+
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; border-radius: var(--radius-sm); font-weight: 600; font-size: 15px; transition: all 0.2s; cursor: pointer; border: none; letter-spacing: 0.02em; }
+    .btn-primary { background: var(--blue); color: #fff; }
+    .btn-primary:hover { background: var(--blue-hover); }
+    .btn-outline { background: transparent; color: var(--fg-strong); border: 1.5px solid var(--border-strong); }
+    .btn-outline:hover { border-color: var(--navy); color: var(--navy); }
+
+    .sub-hero { padding-top: calc(var(--nav-h) + 60px); padding-bottom: var(--space-xl); }
+    .sub-hero .section-header { margin-bottom: var(--space-md); }
+    .page-intro { font-size: 16px; color: var(--muted); max-width: 700px; line-height: 1.9; }
+
+    .tech-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; width: 100%; }
+    .tech-card-title { padding: 20px 32px; background: var(--bg-alt); border-bottom: 1px solid var(--border); font-weight: 600; font-size: 13px; letter-spacing: 0.06em; color: var(--muted); text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
+    .tech-card-title .icon { font-size: 20px; }
+    .tech-card-body { padding: var(--space-xl) var(--space-lg); }
+    .tech-card-body h4 { font-family: var(--font-display); font-size: 16px; font-weight: 700; color: var(--fg-strong); margin-bottom: var(--space-md); }
+    .tech-card-body p { font-size: 14px; color: var(--fg); line-height: 1.9; margin-bottom: var(--space-md); }
+    .tech-badges { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: var(--space-md); }
+    .tech-badge { padding: 8px 18px; background: var(--bg-alt); border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 13px; font-weight: 600; color: var(--fg); font-family: var(--font-mono); }
+    .tech-badge.highlight { border-color: var(--blue); background: var(--blue-light); color: var(--blue); }
+
+    .divider { height: 1px; background: var(--border); margin: var(--space-lg) 0; }
+
+    .arch-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: var(--space-lg); }
+    .arch-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: var(--space-lg); }
+    .arch-card h4 { font-family: var(--font-display); font-size: 16px; font-weight: 700; color: var(--fg-strong); margin-bottom: var(--space-sm); }
+    .arch-card p { font-size: 13px; color: var(--fg); line-height: 1.8; }
+    .arch-card ul { list-style: none; padding: 0; margin-top: var(--space-sm); }
+    .arch-card ul li { padding: 5px 0; font-size: 13px; color: var(--fg); border-bottom: 1px solid var(--border); }
+    .arch-card ul li:last-child { border-bottom: none; }
+    .arch-card ul li::before { content: '▸ '; color: var(--blue); font-weight: 700; }
+
+    .security-item { display: flex; align-items: flex-start; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--border); font-size: 14px; font-weight: 500; color: var(--fg); line-height: 1.6; }
+    .security-item:last-child { border-bottom: none; }
+    .security-item .check { width: 20px; height: 20px; background: var(--blue-light); border-radius: 50%; display: grid; place-items: center; color: var(--blue); font-size: 11px; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+
+    .cta-banner { background: var(--navy); padding: var(--space-3xl) 0; text-align: center; color: #fff; }
+    .cta-banner h2 { font-family: var(--font-display); font-size: clamp(26px, 3.2vw, 40px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.3; margin-bottom: var(--space-md); }
+    .cta-banner p { font-size: 15px; color: rgba(255,255,255,.65); margin-bottom: var(--space-lg); max-width: 500px; margin-left: auto; margin-right: auto; line-height: 1.8; }
+    .cta-form { max-width: 480px; margin: var(--space-xl) auto 0; display: flex; flex-direction: column; gap: 14px; }
+    .cta-form input, .cta-form textarea { width: 100%; padding: 14px 18px; border-radius: var(--radius-sm); border: 1px solid rgba(255,255,255,.15); background: rgba(255,255,255,.08); color: #fff; font-size: 14px; font-family: var(--font-body); outline: none; }
+    .cta-form input::placeholder, .cta-form textarea::placeholder { color: rgba(255,255,255,.4); }
+    .cta-form input:focus, .cta-form textarea:focus { border-color: var(--blue); background: rgba(255,255,255,.12); }
+    .cta-form textarea { min-height: 100px; resize: vertical; }
+    .cta-form .form-row { display: flex; gap: 14px; }
+    .cta-form .form-row input { flex: 1; }
+    .btn-submit { background: var(--blue); color: #fff; padding: 16px 40px; font-size: 16px; border-radius: var(--radius-sm); border: none; font-weight: 600; cursor: pointer; font-family: var(--font-body); }
+    .btn-submit:hover { background: var(--blue-hover); }
+
+    .footer { background: #0F1F33; color: rgba(255,255,255,.7); padding: var(--space-2xl) 0 var(--space-lg); font-size: 13px; font-weight: 400; line-height: 1.8; }
+    .footer .container { display: flex; flex-direction: column; gap: 20px; padding: 0 28px; }
+    .footer-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 28px; }
+    .footer-col h5 { font-family: var(--font-display); font-weight: 700; font-size: 12px; letter-spacing: 0.08em; color: rgba(255,255,255,.7); text-transform: uppercase; margin-bottom: 8px; }
+    .footer-col p, .footer-col a { color: rgba(255,255,255,.7); font-size: 12px; display: block; }
+    .footer-col a:hover { color: #fff; }
+    .footer-col .company-name { font-weight: 400; color: #fff; font-size: 13px; margin-bottom: 4px; }
+    .footer-col .contact-line { white-space: nowrap; }
+    .footer-bottom { text-align: center; padding-top: 14px; border-top: 1px solid rgba(255,255,255,.08); font-size: 11px; color: rgba(255,255,255,.4); }
+
+    @media (max-width: 960px) {
+      .arch-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .nav-links a:not(.nav-cta) { display: none; }
+      .nav-links { gap: 12px; }
+      .nav-logo-sub { display: none; }
+    }
+    @media (max-width: 640px) {
+      .section { padding: var(--space-2xl) 0; }
+      .sub-hero { padding-top: calc(var(--nav-h) + 32px); }
+      .tech-card-body { padding: var(--space-lg) var(--space-md); }
+      .cta-form .form-row { flex-direction: column; }
+      .btn { justify-content: center; }
+      .nav-logo-name { font-size: 18px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 18px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="container">
+      <a href="./home.html" class="nav-logo">
+        <svg viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="1" width="40" height="40" rx="10" fill="#0A2540" />
+          <path d="M12 21 L20 12 L28 21 L20 30 Z" stroke="#fff" stroke-width="1.8" fill="none" stroke-linejoin="round" />
+          <circle cx="20" cy="21" r="3" fill="#0066FF" />
+          <line x1="20" y1="12" x2="20" y2="30" stroke="#fff" stroke-width="1.2" opacity="0.4" />
+          <line x1="12" y1="21" x2="28" y2="21" stroke="#fff" stroke-width="1.2" opacity="0.4" />
+        </svg>
+        <span class="nav-logo-text">
+          <span class="nav-logo-name">創栄テクノロジー株式会社</span>
+          <span class="nav-logo-sub">SouEi Technology Inc.</span>
+        </span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="./services.html">サービス</a></li>
+        <li><a href="./tech.html">技術スタック</a></li>
+        <li><a href="./careers.html">採用情報</a></li>
+        <li><a href="./company.html">会社概要</a></li>
+        <!-- 社内システム（他メニューと完全に統一）
+             従業員・顧客・勤怠・銀行口座情報管理システム入口
+             実際のシステムURLに差し替えてください -->
+        <li><a href="https://system.yourdomain.com" target="_blank" rel="noopener noreferrer">社内システム</a></li>
+        <li><a href="./contact.html" class="nav-cta">お問い合わせ</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="sub-hero">
+    <div class="container">
+      <div class="section-header">
+        <div class="ja">技術力と安全性</div>
+        <div class="en">TECHNOLOGY &amp; SECURITY</div>
+      </div>
+      <p class="page-intro">
+        最新のテクノロジースタックと厳格なセキュリティ体制で、安心して任せられる開発パートナーです。
+        フロントエンドからインフラまで、幅広い技術領域をカバーし、お客様の課題に最適なソリューションを提供します。
+      </p>
+    </div>
+  </section>
+
+  <!-- Core Tech Stack -->
+  <section class="section">
+    <div class="container">
+      <div class="tech-card">
+        <div class="tech-card-title"><span class="icon">🛠</span> コアテクノロジースタック</div>
+        <div class="tech-card-body">
+          <div class="tech-badges">
+            <span class="tech-badge highlight">Java</span>
+            <span class="tech-badge">Python</span>
+            <span class="tech-badge highlight">JavaScript / TypeScript</span>
+            <span class="tech-badge highlight">AWS</span>
+            <span class="tech-badge">Azure</span>
+            <span class="tech-badge">React</span>
+            <span class="tech-badge">Node.js</span>
+            <span class="tech-badge">Spring Boot</span>
+            <span class="tech-badge">Docker</span>
+            <span class="tech-badge">Kubernetes</span>
+            <span class="tech-badge">PostgreSQL</span>
+            <span class="tech-badge">MySQL</span>
+            <span class="tech-badge">MongoDB</span>
+            <span class="tech-badge">GraphQL</span>
+            <span class="tech-badge">Terraform</span>
+            <span class="tech-badge">GitHub Actions</span>
+          </div>
+          <p>当社のエンジニアは、Java、JavaScript/TypeScript、AWS を中心としたモダンな技術スタックに対応しています。クラウドネイティブ開発からレガシーシステムの保守まで、幅広いフェーズのプロジェクトに柔軟に参画可能です。常に最新の技術動向をキャッチアップし、お客様の要件に最適な技術選定と開発体制をご提案します。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical Architecture -->
+  <section class="section-alt">
+    <div class="container">
+      <div class="section-header">
+        <div class="ja">技術アーキテクチャ</div>
+        <div class="en">TECHNICAL ARCHITECTURE</div>
+      </div>
+      <div class="arch-grid">
+        <div class="arch-card">
+          <h4>フロントエンド</h4>
+          <p>モダンなフロントエンド技術で、優れたユーザー体験を提供します。</p>
+          <ul>
+            <li>React / Next.js による高速なUI構築</li>
+            <li>TypeScript による型安全な開発</li>
+            <li>レスポンシブデザイン対応</li>
+          </ul>
+        </div>
+        <div class="arch-card">
+          <h4>バックエンド</h4>
+          <p>安定性と拡張性を兼ね備えたバックエンド基盤を構築します。</p>
+          <ul>
+            <li>Java / Spring Boot による堅牢なAPI開発</li>
+            <li>Node.js による高速なマイクロサービス</li>
+            <li>RESTful / GraphQL API 設計</li>
+          </ul>
+        </div>
+        <div class="arch-card">
+          <h4>インフラ / DevOps</h4>
+          <p>クラウドネイティブなインフラ構成で、運用効率を最大化します。</p>
+          <ul>
+            <li>AWS を中心としたクラウドアーキテクチャ</li>
+            <li>Docker / Kubernetes によるコンテナ管理</li>
+            <li>Terraform によるIaC（Infrastructure as Code）</li>
+          </ul>
+        </div>
+        <div class="arch-card">
+          <h4>データベース / データ基盤</h4>
+          <p>用途に応じた最適なデータストアを選定・設計します。</p>
+          <ul>
+            <li>PostgreSQL / MySQL によるRDB設計</li>
+            <li>MongoDB によるドキュメント管理</li>
+            <li>データ分析基盤の構築</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Security & Compliance -->
+  <section class="section">
+    <div class="container">
+      <div class="tech-card">
+        <div class="tech-card-title"><span class="icon">🔒</span> セキュリティ・コンプライアンス体制</div>
+        <div class="tech-card-body">
+          <p>当社はお客様の大切な情報資産を守るため、業界標準に準拠したセキュリティ管理体制を構築しています。全社員が情報セキュリティ基本方針を遵守し、定期的な教育・監査を実施しています。</p>
+          <div class="divider"></div>
+          <div>
+            <div class="security-item"><span class="check">✓</span><span><strong>プライバシーマーク（Pマーク）準拠</strong> — 個人情報保護法に基づいた厳格な管理体制</span></div>
+            <div class="security-item"><span class="check">✓</span><span><strong>情報セキュリティ基本方針</strong> — 全社員が遵守するセキュリティポリシー</span></div>
+            <div class="security-item"><span class="check">✓</span><span><strong>内部監査体制</strong> — 定期的なアクセスログ監査・機器棚卸</span></div>
+            <div class="security-item"><span class="check">✓</span><span><strong>機密情報管理</strong> — NDAC徹底、リモートアクセス制御</span></div>
+            <div class="security-item"><span class="check">✓</span><span><strong>各種保険加入</strong> — サイバー保険・PL保険</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-banner" id="contact">
+    <div class="container">
+      <h2>ビジネスの課題を、<br>ITで解決しませんか？</h2>
+      <p>お問い合わせはメールまたはお電話で。日本語・中国語・英語に対応しております。</p>
+      <div class="cta-form">
+        <div class="form-row"><input type="text" placeholder="貴社名" /><input type="text" placeholder="お名前" /></div>
+        <div class="form-row"><input type="email" placeholder="メールアドレス" /><input type="tel" placeholder="電話番号（任意）" /></div>
+        <textarea placeholder="お問い合わせ内容をご記入ください"></textarea>
+        <button class="btn-submit">送信する →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col"><h5>会社情報</h5><p class="company-name">創栄テクノロジー株式会社</p><p>SouEi Technology Inc.</p><p>〒110-0015</p><p>東京都台東区東上野6-10-5</p><p>三国第二ビル4階</p></div>
+        <div class="footer-col"><h5>お問い合わせ</h5><p class="contact-line">TEL: 03-6662-9063</p><p class="contact-line">Email: k.tou@souei-tech.com</p></div>
+        <div class="footer-col"><h5>リンク</h5><a href="./services.html">サービス</a><a href="./tech.html">技術スタック</a><a href="./careers.html">採用情報</a><a href="./company.html">会社概要</a><a href="./contact.html">お問い合わせ</a></div>
+      </div>
+      <div class="footer-bottom"><span>© 2025 創栄テクノロジー株式会社 SouEi Technology Inc. All Rights Reserved.</span></div>
+    </div>
+  </footer>
+
+</body>
+</html>
